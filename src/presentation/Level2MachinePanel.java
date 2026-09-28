@@ -6,6 +6,7 @@ import domain.IceCream;
 import domain.Obstaculos;
 import domain.enemies.Maceta;
 import domain.fruits.Banana;
+import domain.fruits.Cactus;
 import domain.fruits.Fruit;
 import domain.fruits.Pineapple;
 import domain.obstacles.BloqueHielo;
