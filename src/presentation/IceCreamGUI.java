@@ -6,12 +6,16 @@ import domain.IceCreamExceptions;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import persistence.IceCreamPersistence;
 
 public class IceCreamGUI extends JFrame {
 
-    private Image background;
+    private static final Logger LOGGER = Logger.getLogger(IceCreamGUI.class.getName());
+
+    private Image backgroundImage;
     private JButton playButton;
     private IceCream player;
     private JPanel mainMenuPanel;
@@ -24,13 +28,13 @@ public class IceCreamGUI extends JFrame {
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        background = new ImageIcon("src/imagenes/menu.png").getImage();
+        backgroundImage = new ImageIcon("src/imagenes/menu.png").getImage();
 
         JPanel backgroundPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                g.drawImage(background, 0, 0, getWidth(), getHeight(), null);
+                g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), null);
             }
         };
 
@@ -330,7 +334,7 @@ public class IceCreamGUI extends JFrame {
             p.enemigos = enemigos;
             return p;
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, "Error al capturar estado de juego", e);
             return null;
         }
     }

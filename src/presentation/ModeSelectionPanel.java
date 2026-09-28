@@ -8,15 +8,15 @@ public class ModeSelectionPanel extends JPanel {
     private JButton pvpButton;
     private JButton pvmButton;
     private JButton mvmButton;
-    private Image background;
-    private IceCreamGUI parent;
+    private Image backgroundImage;
+    private IceCreamGUI parentGUI;
 
     public ModeSelectionPanel(IceCreamGUI parent) {
-        this.parent = parent;
+        this.parentGUI = parent;
         setLayout(null);
 
 
-        background = new ImageIcon("src/imagenes/select_mode_bg.png").getImage();
+        backgroundImage = new ImageIcon("src/imagenes/select_mode_bg.png").getImage();
 
 
         pvpButton = new JButton();
@@ -35,9 +35,9 @@ public class ModeSelectionPanel extends JPanel {
         add(mvmButton);
 
 
-        pvpButton.addActionListener(e -> parent.showPanel(new ChooseIceCreamPanel(parent)));
-        pvmButton.addActionListener(e -> parent.showPanel(new ChooseIceCreamPanel(parent)));
-        mvmButton.addActionListener(e -> parent.showPanel(new Level1MachinePanel(parent,"Vainilla")));
+        pvpButton.addActionListener(e -> parentGUI.showPanel(new ChooseIceCreamPanel(parentGUI)));
+        pvmButton.addActionListener(e -> parentGUI.showPanel(new ChooseIceCreamPanel(parentGUI)));
+        mvmButton.addActionListener(e -> parentGUI.showPanel(new Level1MachinePanel(parentGUI,"Vainilla")));
     }
 
     private void makeInvisible(JButton btn) {
@@ -61,6 +61,6 @@ public class ModeSelectionPanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(background, 0, 0, getWidth(), getHeight(), null);
+        g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), null);
     }
 }

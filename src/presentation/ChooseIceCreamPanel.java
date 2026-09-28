@@ -10,13 +10,13 @@ public class ChooseIceCreamPanel extends JPanel {
     private JButton strawberryButton;
     private JButton backButton;
 
-    private Image background;
-    private IceCreamGUI parent;
+    private Image backgroundImage;
+    private IceCreamGUI parentGUI;
 
     public ChooseIceCreamPanel(IceCreamGUI parent) {
-        this.parent = parent;
+        this.parentGUI = parent;
 
-        background = new ImageIcon("src/imagenes/choose_flavour.png").getImage();
+        backgroundImage = new ImageIcon("src/imagenes/choose_flavour.png").getImage();
 
         setLayout(null);
 
@@ -45,36 +45,36 @@ public class ChooseIceCreamPanel extends JPanel {
         chocolateButton.addActionListener(e -> seleccionar("chocolate"));
         vanillaButton.addActionListener(e -> seleccionar("vainilla"));
         strawberryButton.addActionListener(e -> seleccionar("fresa"));
-        backButton.addActionListener(e -> parent.showPanel(new ModeSelectionPanel(parent)));
+        backButton.addActionListener(e -> parentGUI.showPanel(new ModeSelectionPanel(parentGUI)));
     }
 
     
     private void seleccionar(String sabor) {
 
-        String mode = parent.getGameMode();  
+        String mode = parentGUI.getGameMode();  
 
         if (mode == null) {
             
-            parent.showPanel(new Level1Panel(parent, sabor));
+            parentGUI.showPanel(new Level1Panel(parentGUI, sabor));
             return;
         }
 
         switch (mode) {
 
             case "pvp":
-                parent.showPanel(new Level1Panel(parent, sabor));
+                parentGUI.showPanel(new Level1Panel(parentGUI, sabor));
                 break;
 
             case "pvm":
-                parent.showPanel(new Level1Panel(parent, sabor));
+                parentGUI.showPanel(new Level1Panel(parentGUI, sabor));
                 break;
 
             case "mvm":
-                parent.showPanel(new Level1MachinePanel(parent, sabor));
+                parentGUI.showPanel(new Level1MachinePanel(parentGUI, sabor));
                 break;
 
             default:
-                parent.showPanel(new Level1Panel(parent, sabor));
+                parentGUI.showPanel(new Level1Panel(parentGUI, sabor));
                 break;
         }
     }
@@ -89,6 +89,6 @@ public class ChooseIceCreamPanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(background, 0, 0, getWidth(), getHeight(), null);
+        g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), null);
     }
 }
